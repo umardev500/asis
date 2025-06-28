@@ -1,5 +1,6 @@
 import { Header } from "@/src/components";
 import { PresentTypeList } from "@/src/features/present/components/present-type-list";
+import { usePresentStore } from "@/src/store";
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { SystemBars } from "react-native-edge-to-edge";
@@ -11,8 +12,13 @@ interface Props {
 
 export const PostScreen: React.FC<Props> = ({ filePath }) => {
   const photoPath = `file://${filePath}`;
+  const store = usePresentStore((state) => state);
 
   const { top, bottom } = useSafeAreaInsets();
+
+  const handleSave = () => {
+    console.log(store);
+  };
 
   return (
     <>
@@ -38,7 +44,10 @@ export const PostScreen: React.FC<Props> = ({ filePath }) => {
           <PresentTypeList />
 
           <View className="mt-10">
-            <TouchableOpacity className="bg-orange-500 px-4 h-12 rounded-full justify-center items-center">
+            <TouchableOpacity
+              onPress={handleSave}
+              className="bg-orange-500 px-4 h-12 rounded-full justify-center items-center"
+            >
               <Text className="font-medium text-sm text-white">Simpan</Text>
             </TouchableOpacity>
           </View>

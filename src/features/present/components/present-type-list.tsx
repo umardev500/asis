@@ -1,3 +1,4 @@
+import { PresentType, usePresentStore } from "@/src/store";
 import clsx from "clsx";
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
@@ -5,9 +6,11 @@ import { Text, TouchableOpacity, View } from "react-native";
 interface Props {}
 
 export const PresentTypeList: React.FC<Props> = () => {
-  const [selected, setSelected] = useState<string>();
+  const [selected, setSelected] = useState<PresentType>();
+  const setPresent = usePresentStore((state) => state.setPresentType);
 
-  const handleSelect = (val: string) => {
+  const handleSelect = (val: PresentType) => {
+    setPresent(val);
     setSelected(val);
   };
 
