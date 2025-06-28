@@ -9,10 +9,18 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+      "config": {
+        "googleMapsApiKey": "AIzaSyBVhGTlM6r7JiS1I79l9C5diqs3nOh2RQ4"
+      },
       "supportsTablet": true,
       "bundleIdentifier": "com.umardev500.presentapp"
     },
     "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBVhGTlM6r7JiS1I79l9C5diqs3nOh2RQ4"
+        }
+      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
