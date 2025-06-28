@@ -1,18 +1,15 @@
 import { CatalogList } from "@/src/components";
 import { Banner } from "@/src/features/home/components/banner";
 import React from "react";
-import { ScrollView, StatusBar, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
+import { SystemBars } from "react-native-edge-to-edge";
 
 interface Props {}
 
 export const HomeScreen: React.FC<Props> = () => {
   return (
     <>
-      <StatusBar
-        barStyle={"light-content"}
-        translucent
-        backgroundColor={"transparent"}
-      />
+      <SystemBars style={"light"} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View className="flex-1 bg-white">
           <Banner />
