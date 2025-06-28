@@ -13,7 +13,7 @@ export const HistoryScreen: React.FC<Props> = ({}) => {
   const { top } = useSafeAreaInsets();
 
   const handlePressCreatePresent = () => {
-    router.navigate("/present/take-pic");
+    router.navigate("/present/map-pin");
   };
 
   return (

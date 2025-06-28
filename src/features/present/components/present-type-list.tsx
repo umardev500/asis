@@ -4,7 +4,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 interface Props {}
 
-export const PresentTypeList: React.FC<Props> = ({}) => {
+export const PresentTypeList: React.FC<Props> = () => {
   const [selected, setSelected] = useState<string>();
 
   const handleSelect = (val: string) => {

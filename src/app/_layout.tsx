@@ -13,6 +13,7 @@ export default function RootLayout() {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="present/post" options={{ headerShown: false }} />
+        <Stack.Screen name="present/map-pin" options={{ headerShown: false }} />
       </Stack>
     </SafeAreaProvider>
   );
