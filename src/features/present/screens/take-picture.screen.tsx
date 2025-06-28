@@ -39,7 +39,7 @@ export const TakePictureScreen: React.FC<Props> = () => {
     if (camera.current === null) return;
     try {
       const photo = await camera.current.takePhoto();
-      router.push({
+      router.replace({
         pathname: "/present/post",
         params: {
           filePath: photo.path,
