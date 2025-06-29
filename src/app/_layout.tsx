@@ -1,16 +1,19 @@
 import "@/src/styles/global.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
+import { Alert } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function RootLayout() {
   const queryClient = new QueryClient();
 
+  Alert.alert("Warning", "This is a warning message.");
+
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
         <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen
             name="present/history"
             options={{ headerShown: false }}
