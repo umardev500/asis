@@ -52,3 +52,47 @@ export interface PaginationLink {
   label: string;
   active: boolean;
 }
+
+export interface SavePresentPayload {
+  brand: string;
+  deviceid: string;
+  model: string;
+  uniqueid: string;
+  latitude: number;
+  longitude: number;
+  fake: boolean;
+  waktu: string;
+  image: string;
+}
+
+export interface SavePresentResponse {
+  success: boolean;
+  message: string;
+  data: {
+    pesan: string;
+    sms: string;
+    status: boolean;
+    upload: string;
+  };
+  kirim: {
+    headers: Record<string, unknown>;
+    original: {
+      success: boolean;
+      message: string;
+      pesan: string;
+      status: boolean;
+      data: {
+        headers: Record<string, unknown>;
+        original: {
+          success: boolean;
+          message: string;
+          pesan: string;
+          status: boolean;
+        };
+        exception: unknown | null;
+      };
+      inst_id: number;
+    };
+    exception: unknown | null;
+  };
+}

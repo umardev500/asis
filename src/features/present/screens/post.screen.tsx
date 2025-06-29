@@ -1,8 +1,16 @@
 import { Header } from "@/src/components";
 import { PresentTypeList } from "@/src/features/present/components/present-type-list";
+import { useSavePresent } from "@/src/hooks";
 import { usePresentStore } from "@/src/store";
 import React from "react";
-import { Alert, Image, Text, TouchableOpacity, View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SystemBars } from "react-native-edge-to-edge";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -13,6 +21,7 @@ interface Props {
 export const PostScreen: React.FC<Props> = ({ filePath }) => {
   const photoPath = `file://${filePath}`;
   const store = usePresentStore((state) => state);
+  const { mutate, isPending, isSuccess, data, error } = useSavePresent();
 
   const { top, bottom } = useSafeAreaInsets();
 
@@ -24,7 +33,28 @@ export const PostScreen: React.FC<Props> = ({ filePath }) => {
 
       return;
     }
-    console.log(store);
+
+    mutate(
+      {
+        brand: "Samsung",
+        deviceid: "samsung-s24",
+        model: "Samsung 24 Ultra",
+        uniqueid: "0938h28hs93",
+        latitude: store.coordinates.latitude || 0,
+        longitude: store.coordinates.longitude || 0,
+        fake: false,
+        waktu: store.presentType,
+        image: "https://example.com/image.jpg",
+      },
+      {
+        onSuccess: (data) => {
+          Alert.alert("Success", data.message);
+        },
+        onError: (error) => {
+          Alert.alert("Error", error.message);
+        },
+      }
+    );
   };
 
   return (
@@ -55,7 +85,11 @@ export const PostScreen: React.FC<Props> = ({ filePath }) => {
               onPress={handleSave}
               className="bg-orange-500 px-4 h-12 rounded-full justify-center items-center"
             >
-              <Text className="font-medium text-sm text-white">Simpan</Text>
+              {isPending ? (
+                <ActivityIndicator color={"white"} />
+              ) : (
+                <Text className="font-medium text-sm text-white">Simpan</Text>
+              )}
             </TouchableOpacity>
           </View>
         </View>
