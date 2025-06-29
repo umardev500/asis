@@ -2,7 +2,7 @@ import { Header } from "@/src/components";
 import { PresentTypeList } from "@/src/features/present/components/present-type-list";
 import { usePresentStore } from "@/src/store";
 import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Image, Text, TouchableOpacity, View } from "react-native";
 import { SystemBars } from "react-native-edge-to-edge";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -17,6 +17,13 @@ export const PostScreen: React.FC<Props> = ({ filePath }) => {
   const { top, bottom } = useSafeAreaInsets();
 
   const handleSave = () => {
+    if (store.coordinates === undefined || store.presentType === undefined) {
+      Alert.alert("Incomplete Data", "Lengkapi data terlebih dahulu", [
+        { text: "OK", style: "cancel" },
+      ]);
+
+      return;
+    }
     console.log(store);
   };
 
