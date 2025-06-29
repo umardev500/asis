@@ -1,9 +1,18 @@
 import { present } from "@/src/services";
-import { useQuery } from "@tanstack/react-query";
+import { PresentApiResponse } from "@/src/types";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
-export const useGetPresents = (page: number) => {
-  return useQuery({
-    queryKey: ["presents", page],
-    queryFn: () => present.getAll(page),
+export const useGetPresents = () => {
+  return useInfiniteQuery<PresentApiResponse, Error>({
+    queryKey: ["presents"],
+    queryFn: async ({ pageParam = 1 }) => {
+      return present.getAll(1);
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      return lastPage?.data?.data.next_page_url
+        ? lastPage.data.data.current_page + 1
+        : undefined;
+    },
   });
 };

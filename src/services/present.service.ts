@@ -18,7 +18,7 @@ const _getAll = async (page: number = 1) => {
     throw new Error(jsonData.message || "API returned error");
   }
 
-  return jsonData.data;
+  return jsonData;
 };
 
 export const present = {

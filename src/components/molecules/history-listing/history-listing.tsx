@@ -25,7 +25,7 @@ export const HistoryListing: React.FC<Props> = ({ item }) => {
         </Text>
         <View className="flex-row items-center gap-2">
           <Icon name="history" size={18} color={colors.gray[500]} />
-          <Text className="text-xs text-gray-800">08:55 28-08-25</Text>
+          <Text className="text-xs text-gray-800">{item.created_at}</Text>
         </View>
       </View>
 
