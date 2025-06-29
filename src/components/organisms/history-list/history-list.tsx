@@ -9,15 +9,12 @@ import {
   Text,
   View,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
   listHeaderComponent?: React.ReactElement;
 }
 
 export const HistoryList: React.FC<Props> = ({ listHeaderComponent }) => {
-  const { bottom } = useSafeAreaInsets();
-
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useGetPresents();
 
@@ -42,7 +39,7 @@ export const HistoryList: React.FC<Props> = ({ listHeaderComponent }) => {
           <Text>Loading...</Text>
         </View>
       ) : (
-        <View className="flex-1" style={{ paddingBottom: bottom + 16 }}>
+        <View className="flex-1">
           <FlatList
             onEndReached={handleEndReached}
             ListHeaderComponent={listHeaderComponent}
