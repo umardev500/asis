@@ -2,6 +2,8 @@ import { Header } from "@/src/components";
 import { PresentTypeList } from "@/src/features/present/components/present-type-list";
 import { useSavePresent } from "@/src/hooks";
 import { usePresentStore } from "@/src/store";
+import { SavePresentPayload } from "@/src/types";
+import * as Device from "expo-device";
 import React from "react";
 import {
   ActivityIndicator,
@@ -34,27 +36,26 @@ export const PostScreen: React.FC<Props> = ({ filePath }) => {
       return;
     }
 
-    mutate(
-      {
-        brand: "Samsung",
-        deviceid: "samsung-s24",
-        model: "Samsung 24 Ultra",
-        uniqueid: "0938h28hs93",
-        latitude: store.coordinates.latitude || 0,
-        longitude: store.coordinates.longitude || 0,
-        fake: false,
-        waktu: store.presentType,
-        image: "https://example.com/image.jpg",
+    const payload: SavePresentPayload = {
+      brand: Device.brand || "",
+      deviceid: Device.deviceName || "",
+      model: Device.modelName || "",
+      uniqueid: Device.osBuildId || "",
+      latitude: store.coordinates.latitude || 0,
+      longitude: store.coordinates.longitude || 0,
+      fake: false,
+      waktu: store.presentType,
+      image: "https://example.com/image.jpg",
+    };
+
+    mutate(payload, {
+      onSuccess: (data) => {
+        Alert.alert("Success", data.message);
       },
-      {
-        onSuccess: (data) => {
-          Alert.alert("Success", data.message);
-        },
-        onError: (error) => {
-          Alert.alert("Error", error.message);
-        },
-      }
-    );
+      onError: (error) => {
+        Alert.alert("Error", error.message);
+      },
+    });
   };
 
   return (
