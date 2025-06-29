@@ -8,7 +8,7 @@ interface Props {
 
 export const TimeCard: React.FC<Props> = ({ onPress }) => {
   return (
-    <View className="px-4 flex-row items-center gap-2">
+    <View className="flex-row items-center gap-2 mb-8">
       <View className="bg-orange-50 p-4 h-24 justify-center rounded-xl flex-1">
         <Text className="text-3xl font-bold text-orange-500">08:51</Text>
         <Text className="text-xs text-gray-500 mt-1">

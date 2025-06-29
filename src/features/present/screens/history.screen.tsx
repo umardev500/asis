@@ -8,7 +8,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {}
 
-export const HistoryScreen: React.FC<Props> = ({}) => {
+export const HistoryScreen: React.FC<Props> = () => {
   const router = useRouter();
   const { top } = useSafeAreaInsets();
 
@@ -21,11 +21,10 @@ export const HistoryScreen: React.FC<Props> = ({}) => {
       <SystemBars style={"dark"} />
       <View style={{ height: top }} className="bg-white" />
       <Header title="E-Presensi" />
-      <View className="flex-1 bg-white py-4">
-        <TimeCard onPress={handlePressCreatePresent} />
-
-        <View className="mt-6" />
-        <HistoryList />
+      <View className="flex-1 bg-white">
+        <HistoryList
+          listHeaderComponent={<TimeCard onPress={handlePressCreatePresent} />}
+        />
       </View>
     </>
   );
