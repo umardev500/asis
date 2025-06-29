@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "config": {
-        "googleMapsApiKey": "process.env.GOOGLE_MAPS_API_KEY"
+        "googleMapsApiKey": "AIzaSyBVhGTlM6r7JiS1I79l9C5diqs3nOh2RQ4"
       },
       "supportsTablet": true,
       "bundleIdentifier": "com.umardev500.presentapp"
@@ -18,7 +18,7 @@
     "android": {
       "config": {
         "googleMaps": {
-          "apiKey": "process.env.GOOGLE_MAPS_API_KEY"
+          "apiKey": "AIzaSyBVhGTlM6r7JiS1I79l9C5diqs3nOh2RQ4"
         }
       },
       "adaptiveIcon": {
@@ -59,7 +59,15 @@
           "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera."
         }
       ],
-      "react-native-edge-to-edge"
+      "react-native-edge-to-edge",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location.",
+          "isAndroidBackgroundLocationEnabled": true,
+          "isIosBackgroundLocationEnabled": true
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
