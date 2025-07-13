@@ -28,7 +28,7 @@ export const CatalogListing: React.FC<Props> = (props) => {
     >
       <Image
         className="w-full h-32"
-        source={require("@/assets/images/product-1.png")}
+        source={require("@/assets/images/product-8.png")}
       />
 
       <View className="p-2">
