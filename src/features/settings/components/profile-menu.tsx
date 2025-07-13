@@ -1,11 +1,18 @@
 import { Icon } from "@/src/components";
 import { colors } from "@/src/styles";
+import { useRouter } from "expo-router";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 interface Props {}
 
 export const ProfileMenu: React.FC<Props> = () => {
+  const router = useRouter();
+
+  const navigateToPresensi = () => {
+    router.navigate("/(tabs)/history");
+  };
+
   return (
     <View className="mt-6">
       <View className="bg-white">
@@ -40,7 +47,7 @@ export const ProfileMenu: React.FC<Props> = () => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => {}}
+          onPress={navigateToPresensi}
           activeOpacity={0.7}
           className="px-4 flex-row items-center"
         >
