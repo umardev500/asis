@@ -1,7 +1,7 @@
 import { Icon } from "@/src/components";
 import { colors } from "@/src/styles";
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
 interface Props {}
 
@@ -9,7 +9,11 @@ export const ProfileMenu: React.FC<Props> = () => {
   return (
     <View className="mt-6">
       <View className="bg-white">
-        <View className="px-4 flex-row items-center">
+        <TouchableOpacity
+          onPress={() => {}}
+          activeOpacity={0.7}
+          className="px-4 flex-row items-center"
+        >
           <View className="w-10">
             <Icon name="setting_fill" size={24} color={colors.gray[600]} />
           </View>
@@ -17,8 +21,12 @@ export const ProfileMenu: React.FC<Props> = () => {
             <Text className="text-sm text-gray-800">Pengaturan</Text>
             <Icon name="chevron_right" size={24} color={colors.gray[600]} />
           </View>
-        </View>
-        <View className="px-4 flex-row items-center">
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {}}
+          activeOpacity={0.7}
+          className="px-4 flex-row items-center"
+        >
           <View className="w-10">
             <Icon
               name="deployed_code_update"
@@ -30,8 +38,12 @@ export const ProfileMenu: React.FC<Props> = () => {
             <Text className="text-sm text-gray-800">Tentang Aplikasi</Text>
             <Icon name="chevron_right" size={24} color={colors.gray[600]} />
           </View>
-        </View>
-        <View className="px-4 flex-row items-center">
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {}}
+          activeOpacity={0.7}
+          className="px-4 flex-row items-center"
+        >
           <View className="w-10">
             <Icon name="search_activity" size={24} color={colors.gray[600]} />
           </View>
@@ -39,10 +51,14 @@ export const ProfileMenu: React.FC<Props> = () => {
             <Text className="text-sm text-gray-800">Presensi</Text>
             <Icon name="chevron_right" size={24} color={colors.gray[600]} />
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
 
-      <View className="bg-white mt-4">
+      <TouchableOpacity
+        onPress={() => {}}
+        activeOpacity={0.7}
+        className="bg-white mt-4"
+      >
         <View className="px-4 flex-row items-center">
           <View className="w-10">
             <Icon name="logout" size={24} color={colors.gray[600]} />
@@ -52,7 +68,7 @@ export const ProfileMenu: React.FC<Props> = () => {
             <Icon name="chevron_right" size={24} color={colors.gray[600]} />
           </View>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
