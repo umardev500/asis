@@ -7,7 +7,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: colors.orange[500],
+        tabBarActiveTintColor: colors.gray[600],
         tabBarButton: (props) => (
           <TouchableOpacity {...props} activeOpacity={0.8} />
         ),
@@ -38,12 +38,26 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="settings"
+        name="notification"
         options={{
-          title: "Settings",
+          title: "Notification",
           tabBarIcon: ({ color, focused }) => (
             <Icon
-              name={focused ? "setting_fill" : "setting"}
+              name={focused ? "notification" : "notification"}
+              size={24}
+              color={color}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color, focused }) => (
+            <Icon
+              name={focused ? "person_fill" : "person_fill"}
               size={24}
               color={color}
             />
