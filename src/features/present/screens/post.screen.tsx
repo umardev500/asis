@@ -99,6 +99,7 @@ export const PostScreen: React.FC<Props> = ({ filePath }) => {
 
           <View className="mt-10">
             <TouchableOpacity
+              activeOpacity={0.7}
               onPress={handleSave}
               className="bg-primary-500 px-4 h-12 rounded-full justify-center items-center"
             >

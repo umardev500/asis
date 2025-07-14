@@ -45,6 +45,7 @@ export const TimeCard: React.FC<Props> = ({ onPress }) => {
       </View>
 
       <TouchableOpacity
+        activeOpacity={0.7}
         onPress={onPress}
         className="bg-primary-500 h-24 w-24 rounded-2xl items-center justify-center gap-0.5"
       >

@@ -187,6 +187,7 @@ export const MapPinScreen: React.FC<Props> = () => {
         style={{ paddingBottom: bottom }}
       >
         <TouchableOpacity
+          activeOpacity={0.7}
           disabled={region === undefined}
           onPress={handleSave}
           className="bg-primary-500 flex-1 px-4 h-12 items-center justify-center rounded-full"
