@@ -1,16 +1,40 @@
 import { Icon } from "@/src/components";
+import { useAuthState } from "@/src/hooks";
 import { colors } from "@/src/styles";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 
 interface Props {}
 
 export const ProfileMenu: React.FC<Props> = () => {
+  const { logout } = useAuthState();
   const router = useRouter();
 
   const navigateToPresensi = () => {
     router.navigate("/(tabs)/history");
+  };
+
+  const handleLogout = () => {
+    Alert.alert(
+      "Confirm Logout",
+      "Are you sure you want to log out?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: () => {
+            // ✅ Your logout logic here
+            console.log("User logged out");
+            logout();
+          },
+        },
+      ],
+      { cancelable: true }
+    );
   };
 
   return (
@@ -62,7 +86,7 @@ export const ProfileMenu: React.FC<Props> = () => {
       </View>
 
       <TouchableOpacity
-        onPress={() => {}}
+        onPress={handleLogout}
         activeOpacity={0.7}
         className="bg-white mt-4"
       >
