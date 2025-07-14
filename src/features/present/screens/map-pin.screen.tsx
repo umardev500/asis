@@ -1,9 +1,10 @@
 import { usePresentStore } from "@/src/store";
 import * as Location from "expo-location";
 import { useRouter } from "expo-router";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Alert,
+  Animated,
   Linking,
   StyleSheet,
   Text,
@@ -22,6 +23,66 @@ const INDONESIA_REGION = {
 };
 
 interface Props {}
+
+const HeartbeatDot = ({
+  coordinate,
+}: {
+  coordinate: { latitude: number; longitude: number };
+}) => {
+  const scale = useRef(new Animated.Value(1)).current;
+  const opacity = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    const pulse = Animated.loop(
+      Animated.parallel([
+        Animated.sequence([
+          Animated.timing(scale, {
+            toValue: 2,
+            duration: 1000,
+            useNativeDriver: true,
+          }),
+          Animated.timing(scale, {
+            toValue: 1,
+            duration: 0,
+            useNativeDriver: true,
+          }),
+        ]),
+        Animated.sequence([
+          Animated.timing(opacity, {
+            toValue: 0,
+            duration: 1000,
+            useNativeDriver: true,
+          }),
+          Animated.timing(opacity, {
+            toValue: 1,
+            duration: 0,
+            useNativeDriver: true,
+          }),
+        ]),
+      ])
+    );
+    pulse.start();
+
+    return () => pulse.stop();
+  }, []);
+
+  return (
+    <Marker coordinate={coordinate} anchor={{ x: 0.5, y: 0.5 }}>
+      <View style={styles.container}>
+        <Animated.View
+          style={[
+            styles.pulse,
+            {
+              transform: [{ scale }],
+              opacity,
+            },
+          ]}
+        />
+        <View style={styles.dot} />
+      </View>
+    </Marker>
+  );
+};
 
 export const MapPinScreen: React.FC<Props> = () => {
   const router = useRouter();
@@ -110,14 +171,14 @@ export const MapPinScreen: React.FC<Props> = () => {
             longitudeDelta: 0.01,
           }}
         >
-          <Marker
-            coordinate={{
-              latitude: region?.latitude ?? 0,
-              longitude: region?.longitude ?? 0,
-            }}
-            title="My Location"
-            description="This is a marker in San Francisco"
-          />
+          {region && (
+            <HeartbeatDot
+              coordinate={{
+                latitude: region.latitude,
+                longitude: region.longitude,
+              }}
+            />
+          )}
         </MapView>
       </View>
 
@@ -128,7 +189,7 @@ export const MapPinScreen: React.FC<Props> = () => {
         <TouchableOpacity
           disabled={region === undefined}
           onPress={handleSave}
-          className="bg-orange-500 flex-1 px-4 h-12 items-center justify-center rounded-full"
+          className="bg-primary flex-1 px-4 h-12 items-center justify-center rounded-full"
         >
           <Text className="font-medium text-sm text-white">
             {region === undefined ? "Loading..." : "Selanjutnya"}
@@ -143,5 +204,26 @@ const styles = StyleSheet.create({
   map: {
     width: "100%",
     height: "100%",
+  },
+  dot: {
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: "dodgerblue",
+    borderWidth: 2,
+    borderColor: "#fff",
+  },
+  container: {
+    width: 40, // big enough for max scale (40 * 2)
+    height: 40,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  pulse: {
+    position: "absolute",
+    width: 20, // base pulse size
+    height: 20,
+    borderRadius: 20,
+    backgroundColor: "rgba(0, 122, 255, 0.3)",
   },
 });
