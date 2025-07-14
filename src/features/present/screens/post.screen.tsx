@@ -4,6 +4,7 @@ import { useSavePresent } from "@/src/hooks";
 import { usePresentStore } from "@/src/store";
 import { SavePresentPayload } from "@/src/types";
 import * as Device from "expo-device";
+import { useRouter } from "expo-router";
 import React from "react";
 import {
   ActivityIndicator,
@@ -24,13 +25,17 @@ export const PostScreen: React.FC<Props> = ({ filePath }) => {
   const photoPath = `file://${filePath}`;
   const store = usePresentStore((state) => state);
   const { mutate, isPending, isSuccess, data, error } = useSavePresent();
+  const router = useRouter();
 
   const { top, bottom } = useSafeAreaInsets();
 
   const handleSave = () => {
     if (store.coordinates === undefined || store.presentType === undefined) {
       Alert.alert("Incomplete Data", "Lengkapi data terlebih dahulu", [
-        { text: "OK", style: "cancel" },
+        {
+          text: "OK",
+          style: "cancel",
+        },
       ]);
 
       return;
@@ -50,7 +55,18 @@ export const PostScreen: React.FC<Props> = ({ filePath }) => {
 
     mutate(payload, {
       onSuccess: (data) => {
-        Alert.alert("Success", data.message);
+        // Alert.alert("Success", data.message);
+        Alert.alert("Success", "Data berhasil disimpan", [
+          {
+            text: "Cancel",
+            style: "cancel",
+            onPress: () => router.replace("/(tabs)/history"),
+          },
+          {
+            text: "OK",
+            onPress: () => router.replace("/(tabs)/history"),
+          },
+        ]);
       },
       onError: (error) => {
         Alert.alert("Error", error.message);
