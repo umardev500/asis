@@ -189,7 +189,7 @@ export const MapPinScreen: React.FC<Props> = () => {
         <TouchableOpacity
           disabled={region === undefined}
           onPress={handleSave}
-          className="bg-primary flex-1 px-4 h-12 items-center justify-center rounded-full"
+          className="bg-primary-500 flex-1 px-4 h-12 items-center justify-center rounded-full"
         >
           <Text className="font-medium text-sm text-white">
             {region === undefined ? "Loading..." : "Selanjutnya"}

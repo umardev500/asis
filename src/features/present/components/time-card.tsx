@@ -35,8 +35,8 @@ export const TimeCard: React.FC<Props> = ({ onPress }) => {
 
   return (
     <View className="flex-row items-center gap-2 mb-8">
-      <View className="bg-orange-50 p-4 h-24 justify-center rounded-xl flex-1">
-        <Text className="text-3xl font-bold text-orange-500">
+      <View className="bg-primary-50 p-4 h-24 justify-center rounded-xl flex-1">
+        <Text className="text-3xl font-bold text-primary-500">
           {formatTime(currentTime)}
         </Text>
         <Text className="text-xs text-gray-500 mt-1">
@@ -46,7 +46,7 @@ export const TimeCard: React.FC<Props> = ({ onPress }) => {
 
       <TouchableOpacity
         onPress={onPress}
-        className="bg-orange-500 h-24 w-24 rounded-2xl items-center justify-center gap-0.5"
+        className="bg-primary-500 h-24 w-24 rounded-2xl items-center justify-center gap-0.5"
       >
         <Icon name="fingerprint" size={32} color={"white"} />
         <Text className="text-sm font-medium text-white">Absen</Text>

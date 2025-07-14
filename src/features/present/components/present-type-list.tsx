@@ -22,7 +22,7 @@ export const PresentTypeList: React.FC<Props> = () => {
         className={clsx(
           "flex-1 border border-dashed border-gray-300 p-4 rounded-xl",
           {
-            "bg-orange-50 border-orange-500": selected === "pagi",
+            "bg-primary-50 border-primary-500": selected === "pagi",
           }
         )}
       >
@@ -34,7 +34,7 @@ export const PresentTypeList: React.FC<Props> = () => {
         className={clsx(
           "flex-1 border border-dashed border-gray-300 p-4 rounded-xl",
           {
-            "bg-orange-50 border-orange-500": selected === "istirahat",
+            "bg-primary-50 border-primary-500": selected === "istirahat",
           }
         )}
       >
@@ -46,7 +46,7 @@ export const PresentTypeList: React.FC<Props> = () => {
         className={clsx(
           "flex-1 border border-dashed border-gray-300 p-4 rounded-xl",
           {
-            "bg-orange-50 border-orange-500": selected === "sore",
+            "bg-primary-50 border-primary-500": selected === "sore",
           }
         )}
       >
