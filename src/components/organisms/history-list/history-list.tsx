@@ -53,7 +53,9 @@ export const HistoryList: React.FC<Props> = ({ listHeaderComponent }) => {
               `${item.id}_${item.created_at}_${index}`
             }
             ListFooterComponent={
-              isFetchingNextPage ? <ActivityIndicator /> : null
+              isFetchingNextPage ? (
+                <ActivityIndicator size={"large"} color={"#6b56f4"} />
+              ) : null
             }
           />
         </View>
