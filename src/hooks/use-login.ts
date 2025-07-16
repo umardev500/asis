@@ -1,7 +1,7 @@
 import { useAuthState } from "@/src/hooks/use-auth-state";
 import { auth } from "@/src/services";
 import { LoginResponse } from "@/src/types";
-import { saveToken } from "@/src/utils";
+import { saveToken, saveUserProfile } from "@/src/utils";
 import { useMutation } from "@tanstack/react-query";
 
 export function useLogin() {
@@ -12,6 +12,7 @@ export function useLogin() {
     onSuccess: (resp: LoginResponse) => {
       console.log("success");
       saveToken(resp.token);
+      saveUserProfile(resp.profile);
       signIn();
     },
     onError: (err) => {

@@ -1,4 +1,4 @@
-import { NotificationList } from "@/src/features/notification";
+import { NotificationList } from "@/src/features/notification/components";
 import React from "react";
 import { Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
