@@ -1,7 +1,8 @@
 import { HistoryListing } from "@/src/components/molecules";
 import { useGetPresents } from "@/src/hooks";
 import { PresensiRecord } from "@/src/types";
-import React from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import React, { useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -15,6 +16,9 @@ interface Props {
 }
 
 export const HistoryList: React.FC<Props> = ({ listHeaderComponent }) => {
+  const [refreshing, setRefreshing] = useState(false);
+  const queryClient = useQueryClient();
+
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useGetPresents();
 
@@ -26,6 +30,12 @@ export const HistoryList: React.FC<Props> = ({ listHeaderComponent }) => {
     if (hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
+  };
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await queryClient.invalidateQueries({ queryKey: ["presents"] });
+    setRefreshing(false);
   };
 
   // ✅ Flatten only the PresensiRecord[]:
@@ -41,6 +51,8 @@ export const HistoryList: React.FC<Props> = ({ listHeaderComponent }) => {
       ) : (
         <View className="flex-1">
           <FlatList
+            refreshing={refreshing}
+            onRefresh={handleRefresh}
             onEndReached={handleEndReached}
             ListHeaderComponent={listHeaderComponent}
             contentContainerStyle={{
