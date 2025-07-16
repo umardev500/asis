@@ -1,4 +1,5 @@
 import { Icon } from "@/src/components/atoms";
+import { STORAGE_URL } from "@/src/constants";
 import { colors } from "@/src/styles";
 import { PresensiRecord } from "@/src/types";
 import React, { useState } from "react";
@@ -10,6 +11,7 @@ interface Props {
 
 export const HistoryListing: React.FC<Props> = ({ item }) => {
   const [shown, setShown] = useState(false);
+  const imgURL = STORAGE_URL + item.image;
 
   return (
     <TouchableOpacity
@@ -29,12 +31,7 @@ export const HistoryListing: React.FC<Props> = ({ item }) => {
         </View>
       </View>
 
-      {shown && (
-        <Image
-          source={require("@/assets/images/product-2.png")}
-          className="w-full"
-        />
-      )}
+      {shown && <Image source={{ uri: imgURL }} className="w-full h-52" />}
     </TouchableOpacity>
   );
 };

@@ -1,3 +1,4 @@
 export const TOKEN =
   "eyJhbGciOiJIUzI1NiIsImtpZCI6ImdseGJpSVVZTVhTM0ZPakxrMHNBZHRJWmZGYk9Zc3NaIiwidHlwIjoiSldUIn0.eyJleHAiOjE3NTIwMjYzOTcsImlkIjoxLCJuYW1lIjoiRVBJIEhBUllPTk8iLCJuaWsiOiIiLCJuaXAiOiIxOTg0MDkwODIwMTIxMjEwMDEiLCJzdWIiOjF9.FRRp2E9hbGS6KKfUT5Yw3ch3nYgmn3c8a1WGow-T2nc";
 export const BASE_URL = process.env.EXPO_PUBLIC_API_URL;
+export const STORAGE_URL = process.env.EXPO_PUBLIC_STORAGE_URL;

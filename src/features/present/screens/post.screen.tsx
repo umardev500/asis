@@ -4,6 +4,7 @@ import { useSavePresent } from "@/src/hooks";
 import { usePresentStore } from "@/src/store";
 import { SavePresentPayload } from "@/src/types";
 import * as Device from "expo-device";
+import * as FileSystem from "expo-file-system";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
@@ -29,7 +30,11 @@ export const PostScreen: React.FC<Props> = ({ filePath }) => {
 
   const { top, bottom } = useSafeAreaInsets();
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    const base64 = await FileSystem.readAsStringAsync(photoPath, {
+      encoding: FileSystem.EncodingType.Base64,
+    });
+
     if (store.coordinates === undefined || store.presentType === undefined) {
       Alert.alert("Incomplete Data", "Lengkapi data terlebih dahulu", [
         {
@@ -50,7 +55,7 @@ export const PostScreen: React.FC<Props> = ({ filePath }) => {
       longitude: store.coordinates.longitude || 0,
       fake: false,
       waktu: store.presentType,
-      image: "https://example.com/image.jpg",
+      image: base64,
     };
 
     mutate(payload, {
