@@ -100,7 +100,7 @@ export default function Login() {
             <TouchableOpacity
               onPress={handleLogin}
               activeOpacity={0.7}
-              className="bg-primary justify-center items-center h-11 rounded-xl mt-4"
+              className="bg-primary-500 justify-center items-center h-11 rounded-xl mt-4"
             >
               {isPending ? (
                 <ActivityIndicator color="white" />
