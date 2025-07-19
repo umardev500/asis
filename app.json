@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "present-app",
-    "slug": "present-app",
+    "slug": "asis-anambas",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -13,7 +13,10 @@
         "googleMapsApiKey": "AIzaSyBVhGTlM6r7JiS1I79l9C5diqs3nOh2RQ4"
       },
       "supportsTablet": true,
-      "bundleIdentifier": "com.umardev500.presentapp"
+      "bundleIdentifier": "com.umardev500.presentapp",
+      "infoPlist": {
+        "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your Camera."
+      }
     },
     "android": {
       "config": {
@@ -26,7 +29,15 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.umardev500.presentapp"
+      "package": "com.umardev500.presentapp",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_LOCATION"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -86,6 +97,13 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "c74968f7-ca9e-4232-a816-0125c19c0051"
+      }
+    },
+    "owner": "umardev500"
   }
 }
